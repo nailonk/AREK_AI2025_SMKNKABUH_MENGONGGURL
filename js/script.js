@@ -130,6 +130,8 @@ function startKegiatan(kegiatan, jam, menit) {
     const resetBtn = document.getElementById("resetBtn");
     const finishBtn = document.getElementById("finishBtn");
     finishBtn.classList.add("hidden");
+    resetBtn.classList.remove("hidden");
+
 
     namaKegiatan.textContent = kegiatan;
 
@@ -156,6 +158,7 @@ function startKegiatan(kegiatan, jam, menit) {
             clearInterval(timerInterval);
             progressText.textContent = "Waktu habis!";
             finishBtn.classList.remove("hidden");
+            resetBtn.classList.add("hidden");
         }
     }
 
@@ -215,7 +218,7 @@ resetBtn.addEventListener("click", () => {
             `,
             icon: "success",
             confirmButtonText: "OK",
-        });
+        }); 
 
     }, 300);
 }, { once: true });

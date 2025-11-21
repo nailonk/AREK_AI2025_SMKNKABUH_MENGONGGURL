@@ -14,7 +14,7 @@ function updateGreeting() {
         Swal.fire({
             title: "Masukkan Nama Anda",
             input: "text",
-            inputPlaceholder: "Nama lengkap atau panggilan...",
+            inputPlaceholder: "Nama panggilan...",
             showCancelButton: false,
             confirmButtonText: "Simpan",
             allowOutsideClick: false,
@@ -450,7 +450,7 @@ function lakukanGacha() {
 
 /* ======================================================
    MONEY PLANNER (UANG.HTML)
-====================================================== */
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
     const formTarget = document.getElementById("target");
@@ -565,7 +565,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* RIWAYAT UANG */
     function loadRiwayatUang() {
-    const data = JSON.parse(localStorage.getItem("uangList")) || [];
+    const data = JSON.parse(localStorage.getItem("riwayatUang")) || [];
     const box = document.getElementById("riwayat-list");
     box.innerHTML = "";
 
@@ -579,6 +579,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div>
                         <p class="font-medium">${i + 1}. ${item.nama}</p>
                         <p class="text-xs opacity-80">${jumlah}</p>
+                        <p class="text-[10px] opacity-70">${item.tanggal}</p>
                     </div>
                 </div>
             </div>

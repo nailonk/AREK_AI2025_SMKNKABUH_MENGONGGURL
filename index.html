@@ -24,16 +24,17 @@
             <h1 class="text-xl font-bold">Money & Time Planner</h1>
         </div>
 
-        <nav id="navbar"class="flex gap-2"> 
+        <nav class="flex gap-2"> 
             <a href="index.html" class="nav-btn"><i class="fa fa-home"></i> Beranda</a>
             <a href="uang.html" class="nav-btn"><i class="fa-solid fa-wallet"></i> Atur Uang</a>
             <a href="waktu.html" class="nav-btn"><i class="fa-solid fa-clock"></i> Atur Waktu</a>
         </nav>
+        </div>
     </header>
 
 
     <!-- MAIN CONTENT -->
-     
+ <main>    
 <section class="content p-6">
 
 
@@ -41,7 +42,7 @@
         <div class="card mb-6">
             <div class="flex justify-between items-center">
                 <h3 class="text-xl font-semibold" id="greeting">Hallo!</h3>
-                <h3 class="text-xl font-semibold" id="jam">00:00</h3>
+                <span id="jamRealtime"></span>
             </div>
         </div>
 
@@ -50,7 +51,7 @@
 
             <div class="card">
                 <h3 class="text-lg font-semibold">Poin Kamu</h3>
-                <p id="poinUser" class="text-3xl font-bold">0</p>
+                <p id="poinUser" class="text-3xl font-bold text-black">0</p>
                 <p class="text-sm opacity-90">Kumpulkan poin untuk membuka fitur baru</p>
             </div>
 
@@ -114,14 +115,14 @@
 
         </div>
 
-<!-- Chart Waktu Mingguan -->
-        <h3 class="mt-10 mb-3 text-lg font-bold">Grafik Waktu Produktif Mingguan</h3>
-        <div class="bg-white p-4 rounded-xl shadow">
-            <canvas id="weeklyChart"></canvas>
-        </div>
-
-    </section>
+</section>
+</main> 
 
     <script src="js/script.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    updatePoinUI(); // ← tampilkan poin dari sistem yang sama
+});
+</script>
 </body>
 </html>

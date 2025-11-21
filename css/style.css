@@ -12,14 +12,6 @@
 }
 
 /* ====================================== */
-/*                NAVBAR                     */
-/* ====================================== */
-.navbar {
-    
-}
-
-
-/* ====================================== */
 /*                BODY                     */
 /* ====================================== */
 body {
@@ -249,9 +241,36 @@ body {
     }
 }
 
-.buttonkirim,
-.button-success,
-.button-danger {
-    background-color: inherit !important;
-    color: inherit !important;
+
+
+.reward-card {
+    background: #0f172a;        /* Dark navy biar kontras */
+    color: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reward-card h4 {
+    color: #ffffff;
+}
+
+.reward-card p {
+    color: #d1d5db; /* Soft Gray */
+}
+
+.reward-btn {
+    background: #38bdf8;
+    color: #0f172a;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.reward-btn:hover {
+    background: #0ea5e9;
 }

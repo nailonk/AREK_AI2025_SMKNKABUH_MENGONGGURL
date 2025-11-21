@@ -8,6 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Tambahkan SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -21,7 +24,7 @@
             <h1 class="text-xl font-bold">Money & Time Planner</h1>
         </div>
 
-        <nav id="navbar" class="flex gap-2"> 
+        <nav class="flex gap-2"> 
             <a href="index.html" class="nav-btn"><i class="fa fa-home"></i> Beranda</a>
             <a href="uang.html" class="nav-btn"><i class="fa-solid fa-wallet"></i> Atur Uang</a>
             <a href="waktu.html" class="nav-btn"><i class="fa-solid fa-clock"></i> Atur Waktu</a>
@@ -30,19 +33,20 @@
 
 
     <!-- MAIN CONTENT -->
-    <section class="max-w-5xl mx-auto px-4 mt-10">
+      
+<section class="content p-6">
 
-          <!-- Judul -->
-    <div class="rounded-xl shadow-lg bg-[#0891b2] text-white p-5 mb-6">
-        <h3 class="text-xl font-semibold">Rewards</h3>
-    </div>
+        <!-- Judul -->
+        <div class="rounded-xl shadow-lg bg-[#0891b2] text-white p-5 mb-6">
+            <h3 class="text-xl font-semibold">Rewards</h3>
+        </div>
 
-        <!-- POIN USER -->
+       <!-- POIN USER -->
         <div class="card mb-6">
             <h3 class="text-lg font-bold mb-1">Poin Kamu</h3>
 
             <!-- Tambah ID supaya JS bisa update -->
-            <p id="poinUser" class="text-3xl font-bold text-white">0</p>
+            <p id="poinUser" class="text-3xl font-bold text-black">0</p>
 
             <p class="text-sm opacity-80">Gunakan poin untuk menukar reward seru!</p>
         </div>
@@ -60,8 +64,6 @@
                     <p class="text-sm text-gray-200 mt-1">Buka tampilan gelap untuk mode fokus.</p>
                     <p class="text-yellow-300 font-bold mt-2">Harga: 40 poin</p>
                 </div>
-
-                <!-- Tambah data-harga -->
                 <button class="reward-btn" data-harga="40">Tukar</button>
             </div>
 
@@ -98,7 +100,68 @@
         </div>
     </section>
 
-    <script src="js/script.js"></script>
+
+
+    <!-- ======================== -->
+    <!-- SWEET ALERT + REWARD JS -->
+    <!-- ======================== -->
+    <script>
+
+        // Ambil poin dari localStorage
+       let poin = parseInt(localStorage.getItem("totalPoin")) || 0;
+
+        // Tampilkan ke HTML
+        document.getElementById("poinUser").textContent = poin;
+
+        // Tombol reward
+        document.querySelectorAll(".reward-btn").forEach(btn => {
+            btn.addEventListener("click", function () {
+
+                const harga = parseInt(this.getAttribute("data-harga"));
+
+                // Jika poin tidak cukup
+                if (poin < harga) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Poin kamu kurang 😭",
+                        text: `Harga reward ini adalah ${harga} poin.`,
+                        confirmButtonColor: "#ef4444"
+                    });
+                    return;
+                }
+
+                // Konfirmasi
+                Swal.fire({
+                    title: "Tukar reward ini?",
+                    text: `Harga: ${harga} poin`,
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonText: "Ya, tukar!",
+                    cancelButtonText: "Batal",
+                    confirmButtonColor: "#0ea5e9"
+                }).then(result => {
+                    if (result.isConfirmed) {
+
+                        // Kurangi poin
+                        poin -= harga;
+                        localStorage.setItem("poinWaktu", poin);
+
+                        // Update tampilan
+                        document.getElementById("poinUser").textContent = poin;
+
+                        Swal.fire({
+                            icon: "success",
+                            title: "Berhasil! 🎉",
+                            text: "Reward berhasil kamu tukarkan!",
+                            confirmButtonColor: "#22c55e"
+                        });
+                    }
+                });
+
+            });
+        });
+
+    </script>
 
 </body>
 </html>

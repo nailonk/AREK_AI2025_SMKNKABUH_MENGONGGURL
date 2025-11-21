@@ -309,111 +309,6 @@ function updatePoinUI() {
 }
 
 /* ======================================================
-   CHART WAKTU MINGGUAN (INDEX)
-====================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-    const chartCanvas = document.getElementById("weeklyChart");
-    if (!chartCanvas) return; // bukan halaman index
-
-    // ------------------------------
-    // Struktur data waktu mingguan
-    // ------------------------------
-    let weeklyData = JSON.parse(localStorage.getItem("weeklyTime")) || {
-        weekStart: new Date().toDateString(), 
-        data: {
-            "Senin": 0,
-            "Selasa": 0,
-            "Rabu": 0,
-            "Kamis": 0,
-            "Jumat": 0,
-            "Sabtu": 0,
-            "Minggu": 0
-        }
-    };
-
-    // ------------------------------
-    // RESET MINGGU OTOMATIS
-    // ------------------------------
-    const now = new Date();
-    const startWeek = new Date(weeklyData.weekStart);
-    const selisihHari = Math.floor((now - startWeek) / (1000 * 60 * 60 * 24));
-
-    if (selisihHari >= 7) {
-        weeklyData = {
-            weekStart: now.toDateString(),
-            data: {
-                "Senin": 0,
-                "Selasa": 0,
-                "Rabu": 0,
-                "Kamis": 0,
-                "Jumat": 0,
-                "Sabtu": 0,
-                "Minggu": 0
-            }
-        };
-        localStorage.setItem("weeklyTime", JSON.stringify(weeklyData));
-    }
-
-    // ------------------------------
-    // SIAPKAN DATA CHART
-    // ------------------------------
-    const hari = ["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
-
-    // Data y = 1, 5, 10, 15, ... (menit)
-    const dataY = hari.map((h,i)=> (i+1) * 5 - 4);  
-    // Hasil: [1,5,10,15,20,25,30]
-
-    // Dataset khusus Senin (hanya titik Senin yang aktif)
-    const garisSenin = [dataY[0], null, null, null, null, null, null];
-
-    // Dataset utama (kecuali Senin)
-    const garisUtama = [null, ...dataY.slice(1)];
-
-    // ------------------------------
-    // Render Chart.js
-    // ------------------------------
-    new Chart(chartCanvas, {
-        type: "line",
-        data: {
-            labels: hari,
-            datasets: [
-                {
-                    label: "Senin",
-                    data: garisSenin,
-                    borderColor: "red",
-                    borderWidth: 3,
-                    pointRadius: 7,
-                    tension: 0.4
-                },
-                {
-                    label: "Menit Produktif",
-                    data: garisUtama,
-                    borderColor: "blue",
-                    borderWidth: 3,
-                    tension: 0.4
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: true }
-            },
-            scales: {
-                y: { 
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 5,
-                        callback: value => value + " menit"
-                    }
-                }
-            }
-        }
-    });
-});
-
-/* ======================================================
    REWARD SYSTEM (REWARD.HTML)
 ====================================================== */
 
@@ -441,6 +336,7 @@ function getLevel(totalPoin) {
     let level = Math.floor(totalPoin / 200) + 1;
     if (level > 15) level = 15;
     return level;
+    
 }
 
 // --- UPDATE UI LEVEL ---

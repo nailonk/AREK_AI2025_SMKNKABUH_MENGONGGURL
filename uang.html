@@ -21,7 +21,7 @@
             <h1 class="text-xl font-bold">Money & Time Planner</h1>
         </div>
 
-        <nav class="flex gap-2"> 
+        <nav id="navbar"class="flex gap-2"> 
             <a href="index.html" class="nav-btn"><i class="fa fa-home"></i> Beranda</a>
             <a href="uang.html" class="nav-btn"><i class="fa-solid fa-wallet"></i> Atur Uang</a>
             <a href="waktu.html" class="nav-btn"><i class="fa-solid fa-clock"></i> Atur Waktu</a>
@@ -76,28 +76,28 @@
 
         </div>
 
-     <div class="column right-column space-y-6">
-
-            <!-- Target Kamu -->
-           <div class="card card-3 form-card rounded-xl shadow-md bg-gradient-to-r from-blue-500 to-purple-500 text-white p-5 relative z-20">
+     
+        <div class="column right-column tw-space-y-6">
+<!-- Target Kamu -->
+            <div class="target-card shadow-md relative">
                 <h4 class="text-lg font-medium mb-4">Target Kamu</h4>
 
                 <p class="text-sm opacity-90" id="target-name">-</p>
                 <p class="text-3xl font-bold my-1" id="target-saved">Rp 0</p>
                 <p class="text-sm opacity-90 mb-3" id="target-price">/ Rp 0</p>
 
-                <div class="w-full bg-white/30 rounded-full h-3 overflow-hidden">
-                    <div id="target-progress" class="bg-white h-3 rounded-full" style="width: 0%"></div>
+                <div class="progress-wrapper">
+                    <div id="target-progress" class="h-full" style="width: 0%"></div>
                 </div>
 
                 <p class="text-sm mt-2" id="target-percent">0% tercapai</p>
-              <button id="finish-target"
-                        class="relative z-[999] mt-3 w-full bg-white/30 hover:bg-white/40 text-white font-semibold py-2 rounded-lg hidden">
+
+                <button id="finish-target"
+                    class="finish-btn w-full hidden mt-3">
                     🎉 Selesai & Reset Target
                 </button>
-
-
             </div>
+
 
             <!-- Riwayat Transaksi -->
             <div class="card card-4 form-card rounded-xl shadow-md bg-white p-4">

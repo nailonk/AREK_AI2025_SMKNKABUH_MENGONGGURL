@@ -1,176 +1,257 @@
-/* LOGO */
-.logo{
-    height: 75px;
-    width: 75px;
-    background-color: black;
-    border-radius: 50%;
-    background-image: url(https://img.freepik.com/vektor-gratis/ikon-terpencil-perpustakaan-buku-teks_24877-83372.jpg?semt=ais_hybrid&w=740&q=80);
-    background-size: cover;
+/* ====================================== */
+/*              WARNA UTAMA               */
+/* ====================================== */
+:root {
+    --primary: #0F172A;      /* Slate Black-Navy */
+    --secondary: #38BDF8;    /* Accessible Cyan */
+    --accent: #E2E8F0;       /* Soft Gray */
+    --text-dark: #0F172A;
+    --text-light: #ffffff;
+    --success: #059669;
+    --danger: #DC2626;
 }
 
-/* ========================= */
-/*        HEADER (SLATE)     */
-/* ========================= */
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    z-index: 50;
-    background: #334155;        /* SLATE */
-    color: white;
-    padding: 10px 20px;
-    box-shadow: 0 2px 12px rgba(0,0,0,.15);
+/* ====================================== */
+/*                NAVBAR                     */
+/* ====================================== */
+.navbar {
+    
 }
 
-/* ========================= */
-/*         BUTTON            */
-/* ========================= */
-.buttonkirim {
-   
-    color: white;
-    border: none;
+
+/* ====================================== */
+/*                BODY                     */
+/* ====================================== */
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background-color: var(--accent);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+}
+
+/* ====================================== */
+/*              NAVIGATION                */
+/* ====================================== */
+.nav-btn {
+    background: var(--primary);
+    color: var(--text-light);
+    padding: 8px 14px;
+    border-radius: 8px;
     font-weight: 600;
-    padding: 10px 15px;
-    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.nav-btn:hover {
+    background: #1E293B; /* darker slate */
+}
+
+/* ====================================== */
+/*              CARD UTAMA                */
+/* ====================================== */
+.card, .form-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-left: 6px solid var(--secondary);
+}
+
+/* Header section */
+.bg-primary-section {
+    background: var(--primary);
+    color: var(--text-light);
+}
+
+/* Judul area cyan */
+.header-cyan {
+    background: var(--secondary);
+    color: var(--text-light);
+}
+
+/* ====================================== */
+/*             MENU CARD FITUR            */
+/* ====================================== */
+.menu-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-left: 6px solid var(--secondary);
+    transition: 0.25s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.menu-card i {
+    color: var(--primary);
+}
+
+.card-btn {
+    display: inline-block;
+    background: var(--secondary);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+.card-btn:hover {
+    background: #0ea5e9;
+}
+
+
+/* ====================================== */
+/*               INPUT FIELD              */
+/* ====================================== */
+.input-field {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 4px;
+    background: var(--accent);
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.input-field:focus {
+    outline: 2px solid var(--secondary);
+    background: #ffffff;
+}
+
+.input-field::placeholder {
+    color: #64748b; /* slate-500 */
+    opacity: 1;
+}
+
+/* ====================================== */
+/*                BUTTON                  */
+/* ====================================== */
+.buttonkirim {
+    background: var(--secondary);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 14px;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
     transition: 0.2s;
 }
 
 .buttonkirim:hover {
-    background: #0e7490;  /* CYAN gelap */
+    background: #0ea5e9;
+}
+
+.button-success {
+    background: var(--success);
+    color: white;
+}
+
+.button-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.finish-btn {
+    background: rgba(255,255,255,0.3);
+    color: white;
+    padding: 10px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.finish-btn:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+/* ====================================== */
+/*        CARD: TARGET KAMU SPECIAL       */
+/* ====================================== */
+.target-card {
+    background: linear-gradient(135deg, #38BDF8, #818CF8);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.15);
+    padding: 22px;
+}
+
+/* Progress bar */
+#target-progress {
+    background: white;
+}
+
+.progress-wrapper {
+    background: rgba(255,255,255,0.3);
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ====================================== */
+/*            RIWAYAT TRANSAKSI           */
+/* ====================================== */
+/* Item pemasukan */
+/* Pemasukan = hijau transparan */
+#riwayat-list .income {
+    background: rgba(5, 150, 105, 0.15);
+    border-left: 4px solid #059669;
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Pengeluaran = merah transparan */
+#riwayat-list .expense {
+    background: rgba(220, 38, 38, 0.15);
+    border-left: 4px solid #DC2626;
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+#riwayat-list .income,
+#riwayat-list .expense {
+    color: #1e293b;
+    font-size: .92rem;
 }
 
 
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f1f5f9;
-    margin: 0;
-    padding: 20px;
-}
-
-/* LAYOUT */
+/* ====================================== */
+/*                GRID / LAYOUT           */
+/* ====================================== */
 .container {
     display: flex;
     gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 10px;
 }
 
 .column {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    flex: 1;
     gap: 20px;
 }
 
-/* ========================= */
-/*         FORM CARD         */
-/* ========================= */
-.form-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
-    padding: 20px;
-    flex: 1;
-    border-left: 6px solid #0891b2;  /* Cyan strip */
+/* Responsive */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
 }
 
-/* INPUT */
-.input-field {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 1rem;
-    background: white;
-    color: black;
-}
-
-.input-field:focus {
-    outline: 2px solid #0891b2;
-}
-
-/* ========================= */
-/*    NAVBAR BUTTON (CYAN)   */
-/* ========================= */
-.nav-btn {
-    background: #0891b2; 
-    color: white;
-    padding: 8px 14px;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-.nav-btn:hover {
-    background: #0e7490;
-}
-
-/* ========================= */
-/*       GREETING CARD       */
-/* ========================= */
-.card {
-    background: #059669;     /* HIJAU */
-    color: white;
-    padding: 22px;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-3px);
-}
-
-/* ========================= */
-/*       MENU CARD (CYAN)    */
-/* ========================= */
-.menu-card {
-    background: #0891b2;
-    color: white;
-    padding: 25px;
-    border-radius: 14px;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    transition: 0.3s;
-}
-
-.menu-card:hover {
-    transform: scale(1.03);
-}
-
-/* BUTTON DI KARTU */
-.card-btn {
-    display: inline-block;
-    padding: 8px 18px;
-    background: white;
-    color: #334155;       /* Slate strong text */
-    font-weight: bold;
-    border-radius: 8px;
-    transition: 0.2s;
-}
-
-.card-btn:hover {
-    background: #e5e5e5;
-}
-
-/* ========================= */
-/*        REWARD CARD        */
-/* ========================= */
-.reward-card {
-    background: #334155;  /* SLATE */
-    color: white;
-    padding: 20px;
-    border-radius: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    transition: 0.2s;
-    border-left: 6px solid #059669; /* Hijau accent */
-}
-
-.reward-card:hover {
-    transform: translateY(-3px);
+.buttonkirim,
+.button-success,
+.button-danger {
+    background-color: inherit !important;
+    color: inherit !important;
 }

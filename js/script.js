@@ -2,29 +2,50 @@
    GREETING & JAM REAL TIME (INDEX)
 ====================================================== */
 
-let nama = localStorage.getItem("userName");
-if (!nama) {
-  nama = prompt("Masukkan Nama Anda") || "";
-  localStorage.setItem("userName", nama);
+function updateGreeting() {
+    const greeting = document.getElementById("greeting");
+    if (!greeting) return;
+
+    // --- Ambil / simpan nama user ---
+    let nama = localStorage.getItem("userName");
+
+    // Jika nama belum ada → munculkan SweetAlert input
+    if (!nama) {
+        Swal.fire({
+            title: "Masukkan Nama Anda",
+            input: "text",
+            inputPlaceholder: "Nama lengkap atau panggilan...",
+            showCancelButton: false,
+            confirmButtonText: "Simpan",
+            allowOutsideClick: false,
+            allowEscapeKey: false
+        }).then((result) => {
+            nama = result.value || "User";
+            localStorage.setItem("userName", nama);
+            setGreeting(nama); // update greeting setelah isi nama
+        });
+        return; // hentikan dulu sampai swal selesai
+    }
+
+    // Jika nama sudah ada → langsung tampilkan
+    setGreeting(nama);
 }
 
-// fungsi menentukan ucapan
-function getGreetingByTime() {
-  const hour = new Date().getHours();
+function setGreeting(nama) {
+    const greeting = document.getElementById("greeting");
+    const hour = new Date().getHours();
+    let waktuText = "";
 
-  if (hour >= 4 && hour < 11) {
-    return "Selamat Pagi";
-  } else if (hour >= 11 && hour < 15) {
-    return "Selamat Siang";
-  } else if (hour >= 15 && hour < 18) {
-    return "Selamat Sore";
-  } else {
-    return "Selamat Malam";
-  }
+    if (hour < 12) waktuText = "Selamat pagi";
+    else if (hour < 18) waktuText = "Selamat siang";
+    else waktuText = "Selamat malam";
+
+    greeting.textContent = `${waktuText}, ${nama}!`;
 }
 
-const greet = getGreetingByTime();
-document.getElementById("greeting").textContent = `${greet} ${nama}!`;
+updateGreeting();
+
+
 
 function updateJam() {
     const jam = document.getElementById("jam");
@@ -288,8 +309,114 @@ function updatePoinUI() {
 }
 
 /* ======================================================
+   CHART WAKTU MINGGUAN (INDEX)
+====================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const chartCanvas = document.getElementById("weeklyChart");
+    if (!chartCanvas) return; // bukan halaman index
+
+    // ------------------------------
+    // Struktur data waktu mingguan
+    // ------------------------------
+    let weeklyData = JSON.parse(localStorage.getItem("weeklyTime")) || {
+        weekStart: new Date().toDateString(), 
+        data: {
+            "Senin": 0,
+            "Selasa": 0,
+            "Rabu": 0,
+            "Kamis": 0,
+            "Jumat": 0,
+            "Sabtu": 0,
+            "Minggu": 0
+        }
+    };
+
+    // ------------------------------
+    // RESET MINGGU OTOMATIS
+    // ------------------------------
+    const now = new Date();
+    const startWeek = new Date(weeklyData.weekStart);
+    const selisihHari = Math.floor((now - startWeek) / (1000 * 60 * 60 * 24));
+
+    if (selisihHari >= 7) {
+        weeklyData = {
+            weekStart: now.toDateString(),
+            data: {
+                "Senin": 0,
+                "Selasa": 0,
+                "Rabu": 0,
+                "Kamis": 0,
+                "Jumat": 0,
+                "Sabtu": 0,
+                "Minggu": 0
+            }
+        };
+        localStorage.setItem("weeklyTime", JSON.stringify(weeklyData));
+    }
+
+    // ------------------------------
+    // SIAPKAN DATA CHART
+    // ------------------------------
+    const hari = ["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
+
+    // Data y = 1, 5, 10, 15, ... (menit)
+    const dataY = hari.map((h,i)=> (i+1) * 5 - 4);  
+    // Hasil: [1,5,10,15,20,25,30]
+
+    // Dataset khusus Senin (hanya titik Senin yang aktif)
+    const garisSenin = [dataY[0], null, null, null, null, null, null];
+
+    // Dataset utama (kecuali Senin)
+    const garisUtama = [null, ...dataY.slice(1)];
+
+    // ------------------------------
+    // Render Chart.js
+    // ------------------------------
+    new Chart(chartCanvas, {
+        type: "line",
+        data: {
+            labels: hari,
+            datasets: [
+                {
+                    label: "Senin",
+                    data: garisSenin,
+                    borderColor: "red",
+                    borderWidth: 3,
+                    pointRadius: 7,
+                    tension: 0.4
+                },
+                {
+                    label: "Menit Produktif",
+                    data: garisUtama,
+                    borderColor: "blue",
+                    borderWidth: 3,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true }
+            },
+            scales: {
+                y: { 
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 5,
+                        callback: value => value + " menit"
+                    }
+                }
+            }
+        }
+    });
+});
+
+/* ======================================================
    REWARD SYSTEM (REWARD.HTML)
 ====================================================== */
+
 // --- LEVEL TITLES (15 LEVEL BARU) ---
 const levelTitles = [
     "Fresh Starter",
@@ -328,6 +455,10 @@ function updateLevelUI() {
 }
 
 
+
+// =====================================================
+//     FINAL & FIXED REWARD SYSTEM WITH SWEETALERT
+// =====================================================
 document.addEventListener("DOMContentLoaded", () => {
     const poinElem = document.getElementById("poinUser");
     if (!poinElem) return;
@@ -337,7 +468,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const buttons = document.querySelectorAll(".reward-btn");
 
-    // Ambil data reward yang sudah dibeli
     let rewardUnlocked = JSON.parse(localStorage.getItem("rewardUnlocked")) || {};
 
     // Tandai reward yang sudah dibeli
@@ -355,7 +485,11 @@ document.addEventListener("DOMContentLoaded", () => {
             let currentPoin = Number(localStorage.getItem("totalPoin")) || 0;
 
             if (currentPoin < harga) {
-                alert("Poin kamu tidak cukup");
+                Swal.fire({
+                    icon: "error",
+                    title: "Poin Tidak Cukup",
+                    text: "Yuk kumpulkan poin lebih banyak!",
+                });
                 return;
             }
 
@@ -364,27 +498,33 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("totalPoin", currentPoin);
             poinElem.innerText = currentPoin;
 
-            // Cek apakah reward adalah gacha
+            // Jika Gacha
             if (namaReward.includes("Gacha")) {
                 lakukanGacha();
-            } else {
-                // Simpan sebagai "sudah dibeli"
-                rewardUnlocked[namaReward] = true;
-                localStorage.setItem("rewardUnlocked", JSON.stringify(rewardUnlocked));
-
-                btn.innerText = "Sudah Dibeli";
-                btn.disabled = true;
-                btn.classList.add("opacity-50", "cursor-not-allowed");
-
-                alert("Reward berhasil ditukar!");
+                return;
             }
+
+            // Jika Reward biasa
+            rewardUnlocked[namaReward] = true;
+            localStorage.setItem("rewardUnlocked", JSON.stringify(rewardUnlocked));
+
+            btn.innerText = "Sudah Dibeli";
+            btn.disabled = true;
+            btn.classList.add("opacity-50", "cursor-not-allowed");
+
+            Swal.fire({
+                icon: "success",
+                title: "Berhasil Ditukar!",
+                text: `${namaReward} berhasil kamu dapatkan 🎉`,
+            });
         });
     });
 });
 
 
+
 /* ======================================================
-   FUNGSI GACHA
+   FUNGSI GACHA (Ditingkatkan)
 ====================================================== */
 function lakukanGacha() {
     const hadiah = [
@@ -400,12 +540,16 @@ function lakukanGacha() {
 
     const randomItem = hadiah[Math.floor(Math.random() * hadiah.length)];
 
-    // Simpan item ke localStorage
     let koleksi = JSON.parse(localStorage.getItem("koleksiGacha")) || [];
     koleksi.push(randomItem);
     localStorage.setItem("koleksiGacha", JSON.stringify(koleksi));
 
-    alert("🎁 Kamu mendapatkan: " + randomItem);
+    Swal.fire({
+        title: "🎁 Kamu Mendapatkan!",
+        html: `<h2 class="text-xl font-bold">${randomItem}</h2>`,
+        icon: "success",
+        confirmButtonText: "Keren!"
+    });
 }
 
 /* ======================================================
@@ -525,26 +669,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* RIWAYAT UANG */
     function loadRiwayatUang() {
-        let riwayat = JSON.parse(localStorage.getItem("riwayatUang")) || [];
-        const box = document.getElementById("riwayat-list");
-        box.innerHTML = "";
+    const data = JSON.parse(localStorage.getItem("uangList")) || [];
+    const box = document.getElementById("riwayat-list");
+    box.innerHTML = "";
 
-        if (riwayat.length === 0) {
-            box.innerHTML = "<p class='text-white-500'>Belum ada riwayat.</p>";
-            return;
-        }
+    data.forEach((item, i) => {
+        const warna = item.jenis === "masuk" ? "income" : "expense";
+        const jumlah = rupiah(item.jumlah);
 
-        riwayat.forEach((item, i) => {
-            box.innerHTML += `
-                <div class="p-3 bg-slate-100 rounded-lg shadow flex justify-between">
+        box.innerHTML += `
+            <div class="${warna}">
+                <div class="flex items-center justify-between w-full">
                     <div>
-                        <p class="font-medium text-slate-800">${i + 1}. ${item.nama}</p>
-                        <p class="text-xs text-slate-600">${rupiah(item.jumlah)}</p>
+                        <p class="font-medium">${i + 1}. ${item.nama}</p>
+                        <p class="text-xs opacity-80">${jumlah}</p>
                     </div>
                 </div>
-            `;
-        });
-    }
+            </div>
+        `;
+    });
+}
 
 
     /* ===========================
@@ -590,13 +734,12 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ======================================================
    FITUR YANG TERBUKA (INDEX)
 ====================================================== */
-
 const fiturUnlock = {
-    2: "🎉 Dark Mode",
-    3: "🔥 Mode Fokus",
-    5: "✨ Tema Pastel",
-    10: "🎁 Item Gacha",
-    15: "⭐ Elite Productivity Badge"
+    50: "🎉 Dark Mode",
+    100: "🔥 Mode Fokus",
+    200: "✨ Tema Pastel",
+    350: "🎁 Item Gacha",
+    500: "⭐ Elite Productivity Badge"
 };
 
 function updateUnlockedFeatures() {
@@ -604,29 +747,38 @@ function updateUnlockedFeatures() {
     if (!box) return;
 
     const totalPoin = Number(localStorage.getItem("totalPoin")) || 0;
-    const level = getLevel(totalPoin);
 
-    let list = "";
-
-    Object.keys(fiturUnlock).forEach(lv => {
-        if (level >= lv) {
-            list += `
-                <div class="p-3 mb-2 bg-blue-600 text-white rounded-lg">
-                    ✔ ${fiturUnlock[lv]}
-                </div>
-            `;
-        }
-    });
-
-    if (list === "") {
-        box.innerHTML = `
-            <div class="card">
-                <p class="text-white">Belum ada fitur yang terbuka.<br>Kumpulkan poin untuk membuka mode baru!</p>
-            </div>
-        `;
-    } else {
-        box.innerHTML = list;
-    }
+    let list = "";   // ← FIX PENTING
 }
 
-updateUnlockedFeatures();
+/* ======================================================
+   FITUR YANG TERBUKA (INDEX)
+====================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const fiturContainer = document.getElementById("fitur-terbuka");
+    if (!fiturContainer) return; // Jalankan hanya di index
+
+    const rewardUnlocked = JSON.parse(localStorage.getItem("rewardUnlocked")) || {};
+    const poin = Number(localStorage.getItem("totalPoin")) || 0;
+
+    fiturContainer.innerHTML = "";
+
+    // Kalau belum ada reward yang dibuka
+    if (Object.keys(rewardUnlocked).length === 0) {
+        fiturContainer.innerHTML = `
+            <p class="text-gray-500 text-sm">Belum ada fitur yang terbuka.</p>
+        `;
+        return;
+    }
+
+    // Tampilkan reward yang sudah dibeli
+    for (let nama in rewardUnlocked) {
+        fiturContainer.innerHTML += `
+            <div class="bg-white p-4 rounded-xl shadow mb-3">
+                <h3 class="font-semibold">${nama}</h3>
+                <p class="text-sm text-gray-500">Fitur sudah aktif 🎉</p>
+            </div>
+        `;
+    }
+});

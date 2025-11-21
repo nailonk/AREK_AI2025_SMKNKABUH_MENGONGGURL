@@ -8,6 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 </head>
 
 <body class="bg-gray-100">
@@ -21,7 +24,7 @@
             <h1 class="text-xl font-bold">Money & Time Planner</h1>
         </div>
 
-        <nav class="flex gap-2"> 
+        <nav id="navbar"class="flex gap-2"> 
             <a href="index.html" class="nav-btn"><i class="fa fa-home"></i> Beranda</a>
             <a href="uang.html" class="nav-btn"><i class="fa-solid fa-wallet"></i> Atur Uang</a>
             <a href="waktu.html" class="nav-btn"><i class="fa-solid fa-clock"></i> Atur Waktu</a>
@@ -30,7 +33,9 @@
 
 
     <!-- MAIN CONTENT -->
-    <section class="max-w-5xl mx-auto mt-10 px-4">
+     
+<section class="content p-6">
+
 
         <!-- Greeting -->
         <div class="card mb-6">
@@ -57,6 +62,8 @@
             </div>
 
         </div>
+
+        
 
 
         <!-- Reward Preview -->
@@ -107,11 +114,12 @@
 
         </div>
 
+<!-- Chart Waktu Mingguan -->
+        <h3 class="mt-10 mb-3 text-lg font-bold">Grafik Waktu Produktif Mingguan</h3>
+        <div class="bg-white p-4 rounded-xl shadow">
+            <canvas id="weeklyChart"></canvas>
+        </div>
 
-        <!-- Fitur yang Bisa Dibuka -->
-        <h3 class="mt-10 mb-3 text-lg font-bold">Fitur yang Bisa Dibuka</h3>
-
-       <div id="fitur-terbuka"></div>
     </section>
 
     <script src="js/script.js"></script>

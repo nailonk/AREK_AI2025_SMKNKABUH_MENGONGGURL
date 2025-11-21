@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- NAVBAR -->
+    <header class="bg-white shadow-md py-4 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+        
+        <div class="flex items-center gap-3">
+              <div class="text-3xl">💰</div>
+            <h1 class="text-xl font-bold">Money & Time Planner</h1>
+        </div>
+
+        <nav class="flex gap-2"> 
+            <a href="index.html" class="nav-btn"><i class="fa fa-home"></i> Beranda</a>
+            <a href="uang.html" class="nav-btn"><i class="fa-solid fa-wallet"></i> Atur Uang</a>
+            <a href="waktu.html" class="nav-btn"><i class="fa-solid fa-clock"></i> Atur Waktu</a>
+        </nav>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <section class="max-w-5xl mx-auto px-4 mt-10">
+
+          <!-- Judul -->
+    <div class="rounded-xl shadow-lg bg-[#0891b2] text-white p-5 mb-6">
+        <h3 class="text-xl font-semibold">Rewards</h3>
+    </div>
+
+        <!-- POIN USER -->
+        <div class="card mb-6">
+            <h3 class="text-lg font-bold mb-1">Poin Kamu</h3>
+
+            <!-- Tambah ID supaya JS bisa update -->
+            <p id="poinUser" class="text-3xl font-bold text-white">0</p>
+
+            <p class="text-sm opacity-80">Gunakan poin untuk menukar reward seru!</p>
+        </div>
+
+
+        <!-- LIST REWARD -->
+        <h3 class="text-lg font-bold mb-3">Daftar Reward</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Reward 1 -->
+            <div class="reward-card">
+                <div>
+                    <h4 class="text-xl font-semibold">🎉 Tema Dark Mode</h4>
+                    <p class="text-sm text-gray-200 mt-1">Buka tampilan gelap untuk mode fokus.</p>
+                    <p class="text-yellow-300 font-bold mt-2">Harga: 40 poin</p>
+                </div>
+
+                <!-- Tambah data-harga -->
+                <button class="reward-btn" data-harga="40">Tukar</button>
+            </div>
+
+            <!-- Reward 2 -->
+            <div class="reward-card">
+                <div>
+                    <h4 class="text-xl font-semibold">🔥 Mode Fokus</h4>
+                    <p class="text-sm text-gray-200 mt-1">Aktifkan mode kerja lebih tenang.</p>
+                    <p class="text-yellow-300 font-bold mt-2">Harga: 60 poin</p>
+                </div>
+                <button class="reward-btn" data-harga="60">Tukar</button>
+            </div>
+
+            <!-- Reward 3 -->
+            <div class="reward-card">
+                <div>
+                    <h4 class="text-xl font-semibold">✨ Tema Pastel</h4>
+                    <p class="text-sm text-gray-200 mt-1">Ubah tampilan agar lebih aesthetic.</p>
+                    <p class="text-yellow-300 font-bold mt-2">Harga: 50 poin</p>
+                </div>
+                <button class="reward-btn" data-harga="50">Tukar</button>
+            </div>
+
+            <!-- Reward 4 -->
+            <div class="reward-card">
+                <div>
+                    <h4 class="text-xl font-semibold">🎁 Item Random (Gacha)</h4>
+                    <p class="text-sm text-gray-200 mt-1">Dapatkan item lucu untuk koleksi.</p>
+                    <p class="text-yellow-300 font-bold mt-2">Harga: 5 poin</p>
+                </div>
+                <button class="reward-btn" data-harga="5">Tukar</button>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>

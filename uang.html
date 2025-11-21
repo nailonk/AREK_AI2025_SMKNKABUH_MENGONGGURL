@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabung</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+
+<body>
+
+ <!-- NAVBAR -->
+    <header class="bg-white shadow-md py-4 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+        
+        <div class="flex items-center gap-3">
+             <div class="text-3xl">💰</div>
+            <h1 class="text-xl font-bold">Money & Time Planner</h1>
+        </div>
+
+        <nav class="flex gap-2"> 
+            <a href="index.html" class="nav-btn"><i class="fa fa-home"></i> Beranda</a>
+            <a href="uang.html" class="nav-btn"><i class="fa-solid fa-wallet"></i> Atur Uang</a>
+            <a href="waktu.html" class="nav-btn"><i class="fa-solid fa-clock"></i> Atur Waktu</a>
+        </nav>
+    </header>
+
+<section class="content p-6">
+
+    <div class="rounded-xl shadow-lg bg-[#0891b2] text-white p-5 mb-6">
+        <h3 class="text-xl font-semibold">Kelola Keuangan</h3>
+    </div>
+    <div class="container">
+      <div class="column">
+
+            <!-- Form Target -->
+            <div class="card card-1 form-card rounded-xl shadow-md bg-white p-4">
+                <h4 class="text-lg font-medium mb-3">Target Tabungan</h4>
+
+                <form id="target">
+                    <label for="nama-target" class="block text-sm font-medium">Nama Target</label>
+                    <input id="nama-target" type="text" placeholder="Masukkan target anda" class="input-field"/>
+
+                    <label for="harga-target" class="block text-sm font-medium">Harga Target (Rp)</label>
+                    <input id="harga-target" type="number" class="input-field"/>
+
+                    <button type="submit" class="buttonkirim bg-cyan-600 mt-4">Set Target</button>
+                </form>
+            </div>
+
+            <!--  Form Transaksi -->
+            <div class="card card-2 form-card rounded-xl shadow-md bg-white p-4">
+                <h4 class="text-lg font-medium mb-3">Tambah Transaksi</h4>
+
+                <form id="transaksi">
+                    <label for="keterangan" class="block text-sm font-medium">Nama Transaksi</label>
+                    <input id="keterangan" type="text" placeholder="Masukkan" class="input-field"/>
+
+                    <label for="jumlah" class="block text-sm font-medium">Jumlah (Rp)</label>
+                    <input id="jumlah" type="number" class="input-field w-full mt-2"/>
+
+                     <div class="flex gap-3 mt-4">
+                    <button type="submit" name="jenis" value="masuk" class="buttonkirim bg-green-600 text-white px-4 py-2 rounded-lg">
+                        Pemasukan
+                    </button>
+
+                    <button type="submit" name="jenis" value="keluar" class="buttonkirim bg-red-600 text-white px-4 py-2 rounded-lg">
+                        Pengeluaran
+                    </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+     <div class="column right-column space-y-6">
+
+            <!-- Target Kamu -->
+           <div class="card card-3 form-card rounded-xl shadow-md bg-gradient-to-r from-blue-500 to-purple-500 text-white p-5 relative z-20">
+                <h4 class="text-lg font-medium mb-4">Target Kamu</h4>
+
+                <p class="text-sm opacity-90" id="target-name">-</p>
+                <p class="text-3xl font-bold my-1" id="target-saved">Rp 0</p>
+                <p class="text-sm opacity-90 mb-3" id="target-price">/ Rp 0</p>
+
+                <div class="w-full bg-white/30 rounded-full h-3 overflow-hidden">
+                    <div id="target-progress" class="bg-white h-3 rounded-full" style="width: 0%"></div>
+                </div>
+
+                <p class="text-sm mt-2" id="target-percent">0% tercapai</p>
+              <button id="finish-target"
+                        class="relative z-[999] mt-3 w-full bg-white/30 hover:bg-white/40 text-white font-semibold py-2 rounded-lg hidden">
+                    🎉 Selesai & Reset Target
+                </button>
+
+
+            </div>
+
+            <!-- Riwayat Transaksi -->
+            <div class="card card-4 form-card rounded-xl shadow-md bg-white p-4">
+                <h4 class="text-lg font-medium mb-3">Riwayat Transaksi</h4>
+
+                <div id="riwayat-list" class="space-y-2 text-sm">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

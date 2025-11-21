@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAKU</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- NAVBAR -->
+    <header class="bg-white shadow-md py-4 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+        
+        <div class="flex items-center gap-3">
+             <div class="text-3xl">💰</div>
+            <h1 class="text-xl font-bold">Money & Time Planner</h1>
+        </div>
+
+        <nav class="flex gap-2"> 
+            <a href="index.html" class="nav-btn"><i class="fa fa-home"></i> Beranda</a>
+            <a href="uang.html" class="nav-btn"><i class="fa-solid fa-wallet"></i> Atur Uang</a>
+            <a href="waktu.html" class="nav-btn"><i class="fa-solid fa-clock"></i> Atur Waktu</a>
+        </nav>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <section class="max-w-5xl mx-auto mt-10 px-4">
+
+        <!-- Greeting -->
+        <div class="card mb-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-semibold" id="greeting">Hallo!</h3>
+                <h3 class="text-xl font-semibold" id="jam">00:00</h3>
+            </div>
+        </div>
+
+        <!-- Poin & Level -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <div class="card">
+                <h3 class="text-lg font-semibold">Poin Kamu</h3>
+                <p id="poinUser" class="text-3xl font-bold">0</p>
+                <p class="text-sm opacity-90">Kumpulkan poin untuk membuka fitur baru</p>
+            </div>
+
+            <div class="card">
+
+                <h3 id="level-number" class="text-lg font-semibold">Level 1</h3>
+                <p id="level-name" class="text-2xl font-bold">Fresh Starter</p>
+                <p class="text-sm opacity-90">Naikkan level dengan produktif!</p>
+            </div>
+
+        </div>
+
+
+        <!-- Reward Preview -->
+        <h3 class="mt-10 mb-3 text-lg font-bold">Reward Preview</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            <div class="bg-white p-4 rounded-xl shadow text-center">
+                <h3 class="font-semibold">🌙 Dark Mode</h3>
+                <p class="text-sm text-gray-500">40 Poin</p>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow text-center">
+                <h3 class="font-semibold">🔥 Mode Fokus</h3>
+                <p class="text-sm text-gray-500">60 Poin</p>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow text-center">
+                <h3 class="font-semibold">🎁 Gacha</h3>
+                <p class="text-sm text-gray-500">5 Poin</p>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="reward.html" class="nav-btn inline-block">Lihat Semua Reward →</a>
+        </div>
+
+
+        <!-- Fitur Utama -->
+        <h3 class="mt-10 mb-3 text-lg font-bold">Fitur Utama</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <div class="menu-card">
+                <i class="fa-solid fa-wallet text-4xl mb-3"></i>
+                <h3 class="font-bold text-xl mb-1">Atur Uang</h3>
+                <p class="text-sm">Catat pemasukan, pengeluaran, dan target.</p>
+                <a href="uang.html" class="card-btn mt-3">Mulai</a>
+            </div>
+
+            <div class="menu-card">
+                <i class="fa-solid fa-clock text-4xl mb-3"></i>
+                <h3 class="font-bold text-xl mb-1">Atur Waktu</h3>
+                <p class="text-sm">Rencanakan jadwalmu dan tetap fokus.</p>
+                <a href="waktu.html" class="card-btn mt-3">Mulai</a>
+            </div>
+
+        </div>
+
+
+        <!-- Fitur yang Bisa Dibuka -->
+        <h3 class="mt-10 mb-3 text-lg font-bold">Fitur yang Bisa Dibuka</h3>
+
+       <div id="fitur-terbuka"></div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

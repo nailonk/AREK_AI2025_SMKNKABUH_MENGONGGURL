@@ -1,0 +1,176 @@
+/* LOGO */
+.logo{
+    height: 75px;
+    width: 75px;
+    background-color: black;
+    border-radius: 50%;
+    background-image: url(https://img.freepik.com/vektor-gratis/ikon-terpencil-perpustakaan-buku-teks_24877-83372.jpg?semt=ais_hybrid&w=740&q=80);
+    background-size: cover;
+}
+
+/* ========================= */
+/*        HEADER (SLATE)     */
+/* ========================= */
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 50;
+    background: #334155;        /* SLATE */
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.15);
+}
+
+/* ========================= */
+/*         BUTTON            */
+/* ========================= */
+.buttonkirim {
+   
+    color: white;
+    border: none;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buttonkirim:hover {
+    background: #0e7490;  /* CYAN gelap */
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    margin: 0;
+    padding: 20px;
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 20px;
+}
+
+/* ========================= */
+/*         FORM CARD         */
+/* ========================= */
+.form-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+    padding: 20px;
+    flex: 1;
+    border-left: 6px solid #0891b2;  /* Cyan strip */
+}
+
+/* INPUT */
+.input-field {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: white;
+    color: black;
+}
+
+.input-field:focus {
+    outline: 2px solid #0891b2;
+}
+
+/* ========================= */
+/*    NAVBAR BUTTON (CYAN)   */
+/* ========================= */
+.nav-btn {
+    background: #0891b2; 
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    background: #0e7490;
+}
+
+/* ========================= */
+/*       GREETING CARD       */
+/* ========================= */
+.card {
+    background: #059669;     /* HIJAU */
+    color: white;
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* ========================= */
+/*       MENU CARD (CYAN)    */
+/* ========================= */
+.menu-card {
+    background: #0891b2;
+    color: white;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.menu-card:hover {
+    transform: scale(1.03);
+}
+
+/* BUTTON DI KARTU */
+.card-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    background: white;
+    color: #334155;       /* Slate strong text */
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.card-btn:hover {
+    background: #e5e5e5;
+}
+
+/* ========================= */
+/*        REWARD CARD        */
+/* ========================= */
+.reward-card {
+    background: #334155;  /* SLATE */
+    color: white;
+    padding: 20px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    transition: 0.2s;
+    border-left: 6px solid #059669; /* Hijau accent */
+}
+
+.reward-card:hover {
+    transform: translateY(-3px);
+}
